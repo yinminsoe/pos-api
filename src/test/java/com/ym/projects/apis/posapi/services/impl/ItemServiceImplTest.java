@@ -43,8 +43,8 @@ class ItemServiceImplTest extends BaseTestCase {
         itemType = ItemType.builder().id(ID).description(TYPE_DESC_1).build();
         itemCategory = ItemCategory.builder().id(ID).description(TYPE_DESC_1).build();
         unitOfMeasure=UnitOfMeasure.builder().id(ID).description(CATEGORY_DESC_1).build();
-        warehouse=Warehouse.builder().id(ID).name(WH_DESC).build();
-        location=Location.builder().id(ID).name(LOC_DESC).build();
+        warehouse=Warehouse.builder().id(ID).description(WH_DESC).build();
+        location=Location.builder().id(ID).description(LOC_DESC).build();
         item=Item.builder().itemType(itemType).itemCategory(itemCategory).unitOfMeasure(unitOfMeasure).warehouse(warehouse).location(location).build();
         itemService = new ItemServiceImpl(itemRepository);
     }
@@ -64,9 +64,9 @@ class ItemServiceImplTest extends BaseTestCase {
     }
 
     @Test
-    void saveAndUpdateItem() {
+    void saveOrUpdateItem() {
         ArgumentCaptor<Item> captor = ArgumentCaptor.forClass(Item.class);
-        itemService.saveAndUpdateItem(item);
+        itemService.saveOrUpdateItem(item);
         verify(itemRepository, times(1)).save(captor.capture());
         assertEquals(item.getId(), captor.getValue().getId());
     }

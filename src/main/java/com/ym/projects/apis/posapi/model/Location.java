@@ -13,17 +13,17 @@ import java.util.Date;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Location extends BaseEntity{
-    @Column(name ="name", nullable = false)
-    private String name;
+    @Column(name ="description", nullable = false, length = DESCRIPTION_LENGTH)
+    private String description;
 
     @OneToOne
     @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
 
     @Builder
-    public Location(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String name, Warehouse warehouse) {
+    public Location(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String description, Warehouse warehouse) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
-        this.name = name;
+        this.description = description;
         this.warehouse = warehouse;
     }
 }

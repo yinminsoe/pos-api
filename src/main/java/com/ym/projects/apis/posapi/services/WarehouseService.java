@@ -7,6 +7,6 @@ import java.util.List;
 public interface WarehouseService {
     List<Warehouse> findAllWarehouse();
     Warehouse findWarehouseById(Long id);
-    Warehouse saveAndUpdateWarehouse(Warehouse warehouse);
+    Warehouse saveOrUpdateWarehouse(Warehouse warehouse);
     void deleteWarehouseById(Long id);
 }

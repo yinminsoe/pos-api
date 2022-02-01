@@ -34,8 +34,8 @@ class LocationServiceImplTest extends BaseTestCase {
     @BeforeEach
     void setUp() {
         locationService = new LocationServiceImpl(locationRepository);
-        location=Location.builder().id(ID).name(LOC_DESC).build();
-        Warehouse warehouse = Warehouse.builder().id(ID).name(WH_DESC).location(location).build();
+        location=Location.builder().id(ID).description(LOC_DESC).build();
+        Warehouse warehouse = Warehouse.builder().id(ID).description(WH_DESC).location(location).build();
         location.setWarehouse(warehouse);
     }
     @Test
@@ -54,9 +54,9 @@ class LocationServiceImplTest extends BaseTestCase {
     }
 
     @Test
-    void saveAndUpdateLocation() {
+    void saveOrUpdateLocation() {
         when(locationRepository.save(location)).thenReturn(location);
-        assertEquals(location.getId(), locationService.saveAndUpdateLocation(location).getId());
+        assertEquals(location.getId(), locationService.saveOrUpdateLocation(location).getId());
     }
 
     @Test

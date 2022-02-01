@@ -15,17 +15,17 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class Warehouse extends BaseEntity{
 
-    @Column(name ="name", nullable = false)
-    private String name;
+    @Column(name ="description", nullable = false, length = DESCRIPTION_LENGTH)
+    private String description;
 
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "warehouse")
     private Location location;
 
     @Builder
-    public Warehouse(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String name, Location location) {
+    public Warehouse(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String description, Location location) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
-        this.name = name;
+        this.description = description;
         this.location = location;
     }
 }

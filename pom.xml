@@ -16,13 +16,15 @@
 	<description>Point Of Sale System Application Interface</description>
 	<properties>
 		<java.version>11</java.version>
+		<junit-jupiter-engine.version>5.8.2</junit-jupiter-engine.version>
 	</properties>
 	<dependencies>
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.5.2</version>
-		</dependency>
+			<version>${junit-jupiter-engine.version}</version>
+		</dependency>-->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -84,7 +86,7 @@
 					<dependency>
 						<groupId>org.junit.jupiter</groupId>
 						<artifactId>junit-jupiter-engine</artifactId>
-						<version>5.5.2</version>
+						<version>${junit-jupiter-engine.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>

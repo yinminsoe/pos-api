@@ -7,6 +7,6 @@ import java.util.List;
 public interface UnitOfMeasureService {
     List<UnitOfMeasure> findAllUnitOfMeasure();
     UnitOfMeasure findUnitOfMeasureById(Long id);
-    UnitOfMeasure saveAndUpdateUnitOfMeasure(UnitOfMeasure unitOfMeasure);
+    UnitOfMeasure saveOrUpdateUnitOfMeasure(UnitOfMeasure unitOfMeasure);
     void deleteUnitOfMeasureById(Long id);
 }

@@ -7,6 +7,6 @@ import java.util.List;
 public interface ItemCategoryService {
     List<ItemCategory> findAllItemCategory();
     ItemCategory findItemCategoryById(Long id);
-    ItemCategory saveAndUpdateItemCategory(ItemCategory itemType);
+    ItemCategory saveOrUpdateItemCategory(ItemCategory itemCategory);
     void deleteItemCategoryById(Long id);
 }

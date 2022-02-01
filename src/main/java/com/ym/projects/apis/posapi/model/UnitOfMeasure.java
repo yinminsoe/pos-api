@@ -12,16 +12,16 @@ import java.util.Date;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class UnitOfMeasure extends BaseEntity{
-    @Column(name="name")
+    @Column(name="name", length = 10)
     private String name;
 
-    @Column(name="description")
+    @Column(name="description", length = DESCRIPTION_LENGTH)
     private String description;
 
-    @Column(name="base_uom")
+    @Column(name="base_uom", length = 10)
     private String baseUOM;
 
-    @Column(name="rate_to_base")
+    @Column(name="rate_to_base", columnDefinition = ALL_QTY_COLUMN_DEFINITION)
     private float rateToBase;
 
     @Builder

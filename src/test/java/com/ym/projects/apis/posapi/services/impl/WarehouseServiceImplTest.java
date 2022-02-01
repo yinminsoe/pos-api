@@ -29,7 +29,7 @@ class WarehouseServiceImplTest extends BaseTestCase {
     @BeforeEach
     void setUp() {
         warehouseService = new WarehouseServiceImpl(warehouseRepository);
-        warehouse = Warehouse.builder().id(ID).name(WH_DESC).build();
+        warehouse = Warehouse.builder().id(ID).description(WH_DESC).build();
     }
 
     @Test
@@ -51,11 +51,11 @@ class WarehouseServiceImplTest extends BaseTestCase {
     }
 
     @Test
-    void saveAndUpdateWarehouse() {
-        warehouse.setName(WH_DESC_2);
+    void saveOrUpdateWarehouse() {
+        warehouse.setDescription(WH_DESC_2);
         when(warehouseRepository.save(warehouse)).thenReturn(warehouse);
-        Warehouse tempWarehouse = warehouseService.saveAndUpdateWarehouse(warehouse);
-        assertEquals(WH_DESC_2, tempWarehouse.getName());
+        Warehouse tempWarehouse = warehouseService.saveOrUpdateWarehouse(warehouse);
+        assertEquals(WH_DESC_2, tempWarehouse.getDescription());
     }
 
     @Test

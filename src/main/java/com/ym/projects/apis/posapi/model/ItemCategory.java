@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class ItemCategory extends BaseEntity{
-    @Column(name="description")
+    @Column(name="description", nullable = false, length = DESCRIPTION_LENGTH)
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "itemCategory")

@@ -30,7 +30,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public Warehouse saveAndUpdateWarehouse(Warehouse warehouse) {
+    public Warehouse saveOrUpdateWarehouse(Warehouse warehouse) {
         return warehouseRepository.save(warehouse);
     }
 

@@ -51,9 +51,9 @@ class UnitOfMeasureServiceImplTest extends BaseTestCase {
     }
 
     @Test
-    void saveAndUpdateUnitOfMeasure() {
+    void saveOrUpdateUnitOfMeasure() {
         ArgumentCaptor<UnitOfMeasure> captor = ArgumentCaptor.forClass(UnitOfMeasure.class);
-        unitOfMeasureService.saveAndUpdateUnitOfMeasure(unitOfMeasure);
+        unitOfMeasureService.saveOrUpdateUnitOfMeasure(unitOfMeasure);
         verify(unitOfMeasureRepository, times(1)).save(captor.capture());
         assertEquals(ID,captor.getValue().getId());
     }

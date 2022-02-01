@@ -28,7 +28,7 @@ public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
     }
 
     @Override
-    public UnitOfMeasure saveAndUpdateUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
+    public UnitOfMeasure saveOrUpdateUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
         return unitOfMeasureRepository.save(unitOfMeasure);
     }
 

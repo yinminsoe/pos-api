@@ -12,13 +12,17 @@ import java.util.Date;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Item extends BaseEntity{
-    @Column(name="description")
+
+    @Column(name="item_barcode", length = DESCRIPTION_LENGTH)
+    private String itemBarCode;
+
+    @Column(name="description", nullable = false , length = DESCRIPTION_LENGTH)
     private String description;
 
-    @Column(name="price")
+    @Column(name="price" , columnDefinition = ALL_PRICE_COLUMN_DEFINITION)
     private double sellingPrice;
 
-    @Column(name="cost_price")
+    @Column(name="cost_price"  , columnDefinition = ALL_PRICE_COLUMN_DEFINITION)
     private double costPrice;
 
     @OneToOne
@@ -29,6 +33,9 @@ public class Item extends BaseEntity{
     @JoinColumn(name = "type_id")
     private ItemType itemType;
 
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
 
     @OneToOne
     @JoinColumn(name = "uom_id")
@@ -42,17 +49,20 @@ public class Item extends BaseEntity{
     @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
 
-    @Column(name="quantity")
+    @Column(name="quantity" , columnDefinition = ALL_QTY_COLUMN_DEFINITION)
     private double quantity;
 
     @Builder
-    public Item(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String description, double sellingPrice, double costPrice, ItemCategory itemCategory, ItemType itemType, UnitOfMeasure unitOfMeasure, Location location, Warehouse warehouse, double quantity) {
+
+    public Item(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String itemBarCode, String description, double sellingPrice, double costPrice, ItemCategory itemCategory, ItemType itemType, byte[] image, UnitOfMeasure unitOfMeasure, Location location, Warehouse warehouse, double quantity) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
+        this.itemBarCode = itemBarCode;
         this.description = description;
         this.sellingPrice = sellingPrice;
         this.costPrice = costPrice;
         this.itemCategory = itemCategory;
         this.itemType = itemType;
+        this.image = image;
         this.unitOfMeasure = unitOfMeasure;
         this.location = location;
         this.warehouse = warehouse;

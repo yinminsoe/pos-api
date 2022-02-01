@@ -28,7 +28,7 @@ public class ItemCategoryServiceImpl implements ItemCategoryService {
     }
 
     @Override
-    public ItemCategory saveAndUpdateItemCategory(ItemCategory itemCategory) {
+    public ItemCategory saveOrUpdateItemCategory(ItemCategory itemCategory) {
         return itemCategoryRepository.save(itemCategory);
     }
 

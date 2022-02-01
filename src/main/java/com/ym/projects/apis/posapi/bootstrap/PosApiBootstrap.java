@@ -23,10 +23,10 @@ public class PosApiBootstrap implements ApplicationListener<ContextRefreshedEven
 
     }
     private void intializeWhLocation(){
-        Location location=Location.builder().id(ID_1).name(LOC_DESC_1).build();
-        Warehouse warehouse = Warehouse.builder().id(ID_1).name(WH_DESC_1).location(location).build();
+        Location location=Location.builder().id(ID_1).description(LOC_DESC_1).build();
+        Warehouse warehouse = Warehouse.builder().id(ID_1).description(WH_DESC_1).location(location).build();
         location.setWarehouse(warehouse);
-        warehouseService.saveAndUpdateWarehouse(warehouse);
+        warehouseService.saveOrUpdateWarehouse(warehouse);
 
     }
 }

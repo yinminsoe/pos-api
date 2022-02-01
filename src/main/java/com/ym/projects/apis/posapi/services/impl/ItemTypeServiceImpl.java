@@ -28,7 +28,7 @@ public class ItemTypeServiceImpl implements ItemTypeService {
     }
 
     @Override
-    public ItemType saveAndUpdateItemType(ItemType itemType) {
+    public ItemType saveOrUpdateItemType(ItemType itemType) {
         return itemTypeRepository.save(itemType);
     }
 

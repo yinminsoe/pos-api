@@ -7,6 +7,6 @@ import java.util.List;
 public interface ItemTypeService {
     List<ItemType> findAllItemType();
     ItemType findItemTypeById(Long id);
-    ItemType saveAndUpdateItemType(ItemType itemType);
+    ItemType saveOrUpdateItemType(ItemType itemType);
     void deleteItemTypeById(Long id);
 }

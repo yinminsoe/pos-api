@@ -13,7 +13,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class ItemType extends BaseEntity{
 
-    @Column(name="description")
+    @Column(name="description", nullable = false, length = DESCRIPTION_LENGTH)
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "itemType")

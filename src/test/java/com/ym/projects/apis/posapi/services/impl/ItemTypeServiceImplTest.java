@@ -48,9 +48,9 @@ class ItemTypeServiceImplTest extends BaseTestCase {
     }
 
     @Test
-    void saveAndUpdateItemType() {
+    void saveOrUpdateItemType() {
         ArgumentCaptor<ItemType> captor = ArgumentCaptor.forClass(ItemType.class);
-        itemTypeService.saveAndUpdateItemType(itemType);
+        itemTypeService.saveOrUpdateItemType(itemType);
         verify(itemTypeRepository, times(1)).save(captor.capture());
         assertEquals(itemType.getId(), captor.getValue().getId());
     }

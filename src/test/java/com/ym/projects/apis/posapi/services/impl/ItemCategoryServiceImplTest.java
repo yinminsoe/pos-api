@@ -48,9 +48,9 @@ class ItemCategoryServiceImplTest extends BaseTestCase {
     }
 
     @Test
-    void saveAndUpdateItemCategory() {
+    void saveOrUpdateItemCategory() {
         ArgumentCaptor<ItemCategory> captor = ArgumentCaptor.forClass(ItemCategory.class);
-        itemCategoryService.saveAndUpdateItemCategory(itemCategory);
+        itemCategoryService.saveOrUpdateItemCategory(itemCategory);
         verify(itemCategoryRepository, times(1)).save(captor.capture());
         assertEquals(itemCategory.getId(), captor.getValue().getId());
     }
