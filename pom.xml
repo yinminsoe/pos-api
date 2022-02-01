@@ -19,11 +19,11 @@
 		<junit-jupiter-engine.version>5.8.2</junit-jupiter-engine.version>
 	</properties>
 	<dependencies>
-	<!--	<dependency>
+ 	<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
 			<version>${junit-jupiter-engine.version}</version>
-		</dependency>-->
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
