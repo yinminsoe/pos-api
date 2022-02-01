@@ -3,9 +3,7 @@ package com.ym.projects.apis.posapi;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.MockitoAnnotations;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+
 import java.util.Date;
 
 public class BaseTestCase {

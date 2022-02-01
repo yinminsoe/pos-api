@@ -7,6 +7,6 @@ import java.util.List;
 public interface TransactionService {
     List<Transaction> findAllSales();
     Transaction findSalesById(Long id);
-    Transaction saveOrUpdateSales(Transaction customer);
-    void deleteSalesById(Long id);
+    Transaction saveOrUpdateSales(Transaction transaction);
+    void deleteTransactionById(Long id);
 }

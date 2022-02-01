@@ -52,5 +52,13 @@ public class TransactionDetails {
     @Column(name="profit_amount" , columnDefinition = ALL_PRICE_COLUMN_DEFINITION)
     private float profitAmount;
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof TransactionDetails))
+            return false;
+        TransactionDetails other = (TransactionDetails)o;
+        return this.getId() == other.getId();
+    }
 }

@@ -14,9 +14,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = false)
 public class Transaction extends BaseEntity{
 
-    @OneToMany( cascade =  CascadeType.ALL, mappedBy = "transaction")
-    private Set<TransactionDetails> saleDetails;
-    
+
     @OneToOne
     @JoinColumn(name="employee_id")
     private Employee employee;
@@ -53,7 +51,8 @@ public class Transaction extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
 
-    @OneToMany(mappedBy = "transaction")
+
+    @OneToMany( cascade =  CascadeType.ALL, mappedBy = "transaction")
     private Set<TransactionDetails> transactionDetails;
 
     @Column(name = "transaction_type", length = ENUM_TYPE_LENGTH)
@@ -69,12 +68,19 @@ public class Transaction extends BaseEntity{
     @JoinColumn(name="customer_id", nullable = true)
     private Customer customer;
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Transaction))
+            return false;
+        Transaction other = (Transaction)o;
+        return this.getId() == other.getId();
+    }
 
     @Builder
-
-    public Transaction(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, Set<TransactionDetails> saleDetails, Employee employee, int total_transaction, int total_quantity, double totalAmount, float headerDiscount, double totalPayment, double changeAmount, double subTotal, double totalCostAmount, double totalProfit, PaymentType paymentType, Set<TransactionDetails> transactionDetails, TransactionType transactionType, TransactionStatus transactionStatus, Customer customer) {
+    public Transaction(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, Employee employee, int total_transaction, int total_quantity, double totalAmount, float headerDiscount, double totalPayment, double changeAmount, double subTotal, double totalCostAmount, double totalProfit, PaymentType paymentType, Set<TransactionDetails> transactionDetails, TransactionType transactionType, TransactionStatus transactionStatus, Customer customer) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
-        this.saleDetails = saleDetails;
         this.employee = employee;
         this.total_transaction = total_transaction;
         this.total_quantity = total_quantity;
