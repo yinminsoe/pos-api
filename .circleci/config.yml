@@ -13,21 +13,21 @@ jobs:
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
       - image: cimg/openjdk:11.0
-      #specify system properties
-      environment:
+        #specify system properties
+        environment:
         DB_ROOT_USER: root
         DB_URL: jdbc:mysql://localhost:3306/testdb
         DB_DRIVER: com.mysql.cj.jdbc.Driver
         DB_PASS: ""
-      # Customize the JVM maximum heap limit
-      MAVEN_OPTS: -Xmx3200m
+        # Customize the JVM maximum heap limit
+        MAVEN_OPTS: -Xmx3200m
       # Specify our database service here
       # CircleCI maintains a library of pre-built images
       - image: circleci/mysql:8.0.28
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
-      working_directory: ~/repo
+        working_directory: ~/repo
     steps:
       # Checkout the code as the first step.
       - checkout
