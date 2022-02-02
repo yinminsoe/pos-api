@@ -6,27 +6,23 @@ import com.ym.projects.apis.posapi.model.Warehouse;
 import com.ym.projects.apis.posapi.services.WarehouseService;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
+@Component
 public class PosApiBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private static final Long ID_1 = 1L;
-    private static final String WH_DESC_1 = "WAREHOUSE 1 DESCRIPTION";
-    private static final String LOC_DESC_1 = "LOCATION 1 DESCRIPTION";
+    private static final String WH_DESC_1 = "SOUTH DAGON WAREHOUSE YANGON";
+    private static final String LOC_DESC_1 = "SOUTH DAGON NO(2) MARKET YANGON";
+    protected static final String USER ="YIN MIN";
+    protected static final Date CURRENT_DATE =new Date();
 
-    private final WarehouseService warehouseService;
-    public PosApiBootstrap(WarehouseService warehouseService) {
-        this.warehouseService = warehouseService;
-    }
 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
     }
-    private void intializeWhLocation(){
-        Location location=Location.builder().id(ID_1).description(LOC_DESC_1).build();
-        Warehouse warehouse = Warehouse.builder().id(ID_1).description(WH_DESC_1).location(location).build();
-        location.setWarehouse(warehouse);
-        warehouseService.saveOrUpdateWarehouse(warehouse);
 
-    }
 }

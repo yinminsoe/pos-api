@@ -18,7 +18,7 @@ public class UnitOfMeasure extends BaseEntity{
     @Column(name="description", length = DESCRIPTION_LENGTH)
     private String description;
 
-    @Column(name="base_uom", length = 10)
+    @Column(name="base_uom", columnDefinition = "VARCHAR(5) DEFAULT '' ")
     private String baseUOM;
 
     @Column(name="rate_to_base", columnDefinition = ALL_QTY_COLUMN_DEFINITION)

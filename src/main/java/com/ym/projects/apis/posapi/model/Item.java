@@ -1,5 +1,6 @@
 package com.ym.projects.apis.posapi.model;
 
+import com.sun.istack.Nullable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,11 +27,11 @@ public class Item extends BaseEntity{
     private double costPrice;
 
     @OneToOne
-    @JoinColumn(name = "category_id")
-    private ItemCategory itemCategory;
+    @JoinColumn(name = "brand_id", nullable = true)
+    private Brand brand;
 
     @OneToOne
-    @JoinColumn(name = "type_id")
+    @JoinColumn(name = "item_type_id")
     private ItemType itemType;
 
     @Lob
@@ -45,27 +46,23 @@ public class Item extends BaseEntity{
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @OneToOne
-    @JoinColumn(name = "warehouse_id")
-    private Warehouse warehouse;
 
     @Column(name="quantity" , columnDefinition = ALL_QTY_COLUMN_DEFINITION)
     private double quantity;
 
     @Builder
 
-    public Item(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String itemBarCode, String description, double sellingPrice, double costPrice, ItemCategory itemCategory, ItemType itemType, byte[] image, UnitOfMeasure unitOfMeasure, Location location, Warehouse warehouse, double quantity) {
+    public Item(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String itemBarCode, String description, double sellingPrice, double costPrice, Brand brand, ItemType itemType, byte[] image, UnitOfMeasure unitOfMeasure, Location location, double quantity) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
         this.itemBarCode = itemBarCode;
         this.description = description;
         this.sellingPrice = sellingPrice;
         this.costPrice = costPrice;
-        this.itemCategory = itemCategory;
+        this.brand = brand;
         this.itemType = itemType;
         this.image = image;
         this.unitOfMeasure = unitOfMeasure;
         this.location = location;
-        this.warehouse = warehouse;
         this.quantity = quantity;
     }
 }

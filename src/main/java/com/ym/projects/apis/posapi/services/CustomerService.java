@@ -8,6 +8,6 @@ public interface CustomerService {
     List<Customer> findAllCustomer();
     Customer findCustomerById(Long id);
     Customer saveOrUpdateCustomer(Customer customer);
-    void deleteCusomterById(Long id);
+    void deleteCustomerById(Long id);
 
 }

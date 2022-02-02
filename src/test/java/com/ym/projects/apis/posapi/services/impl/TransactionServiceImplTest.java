@@ -71,7 +71,7 @@ class TransactionServiceImplTest extends BaseTestCase {
     }
 
     @Test
-    void deleteCusomterById() {
+    void deleteSalesById() {
         doNothing().when(transactionRepository).deleteById(ID);
         doNothing().when(transactionDetailsRepository).deleteByTransaction(transaction);
 

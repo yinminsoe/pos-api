@@ -13,6 +13,13 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class Employee extends BaseEntity{
 
+    @Column(name ="login_user", unique = true, nullable = false)
+    private String loginUserId;
+
+    @OneToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     @Embedded
     private Person person;
 
@@ -36,8 +43,11 @@ public class Employee extends BaseEntity{
     private Phone phone;
 
     @Builder
-    public Employee(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, Person person, Role role, Address address, Phone phone) {
+
+    public Employee(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String loginUserId, Company company, Person person, Role role, Address address, Phone phone) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
+        this.loginUserId = loginUserId;
+        this.company = company;
         this.person = person;
         this.role = role;
         this.address = address;

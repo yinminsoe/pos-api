@@ -31,7 +31,8 @@ class VendorServiceImplTest extends BaseTestCase {
     void setUp() {
         vendorService = new VendorServiceImpl(vendorRepository);
         vendor = Vendor.builder()
-                .id(ID).person(Person.builder().firstName("First Name").lastName("Last Name").middleName("middle Name").build())
+                .id(ID)
+                .contactName1("CONATCT NAME 1").contactName2("CONTACT NAME 2")
                 .address(Address.builder().address1("Address 1").address2("Address 2").build())
                 .phone(Phone.builder().phone1("Phone 1").phone2("Phone 2").phone3("Phone 3").build())
                 .creditLimit(0L).build();

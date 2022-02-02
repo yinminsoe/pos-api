@@ -12,8 +12,15 @@ import java.util.Date;
 @Table(name = "customer")
 @EqualsAndHashCode(callSuper = false)
 public class Customer extends BaseEntity{
-    @Embedded
-    private Person person;
+    @Column(name = "contact_name1", nullable = false)
+    private String contactName1;
+
+    @Column(name = "contact_name2", nullable = true)
+    private String contactName2;
+
+    @Column(name ="company_name", nullable = false)
+    private String companyName;
+
 
     @Embedded
     @AttributeOverrides({
@@ -34,9 +41,11 @@ public class Customer extends BaseEntity{
     private double creditLimit;
 
     @Builder
-    public Customer(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, Person person, Address address, Phone phone, double creditLimit) {
+    public Customer(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String contactName1, String contactName2, String companyName, Address address, Phone phone, double creditLimit) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
-        this.person = person;
+        this.contactName1 = contactName1;
+        this.contactName2 = contactName2;
+        this.companyName = companyName;
         this.address = address;
         this.phone = phone;
         this.creditLimit = creditLimit;

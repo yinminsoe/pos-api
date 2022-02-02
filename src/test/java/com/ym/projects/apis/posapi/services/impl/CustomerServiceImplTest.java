@@ -32,7 +32,8 @@ class CustomerServiceImplTest extends BaseTestCase {
     @BeforeEach
     void setUp() {
         customer = Customer.builder()
-                .id(ID).person(Person.builder().firstName("First Name").lastName("Last Name").middleName("middle Name").build())
+                .id(ID)
+                .contactName1("CONATCT NAME 1").contactName2("CONTACT NAME 2")
                 .address(Address.builder().address1("Addresss 1").address2("Delivery addres 1").build())
                 .phone(Phone.builder().phone1("+65-2343243").phone2("+65-234343").phone3("+65-2343").build())
                 .build();
@@ -63,9 +64,9 @@ class CustomerServiceImplTest extends BaseTestCase {
     }
 
     @Test
-    void deleteCusomterById() {
+    void deleteCustomerById() {
         doNothing().when(customerRepository).deleteById(anyLong());
-        customerService.deleteCusomterById(ID);
+        customerService.deleteCustomerById(ID);
         verify(customerRepository, times(1)).deleteById(ID);
     }
 }

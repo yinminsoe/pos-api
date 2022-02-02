@@ -45,7 +45,7 @@ class ItemServiceImplTest extends BaseTestCase {
         unitOfMeasure=UnitOfMeasure.builder().id(ID).description(CATEGORY_DESC_1).build();
         warehouse=Warehouse.builder().id(ID).description(WH_DESC).build();
         location=Location.builder().id(ID).description(LOC_DESC).build();
-        item=Item.builder().itemType(itemType).itemCategory(itemCategory).unitOfMeasure(unitOfMeasure).warehouse(warehouse).location(location).build();
+        item=Item.builder().itemType(itemType).unitOfMeasure(unitOfMeasure).location(location).build();
         itemService = new ItemServiceImpl(itemRepository);
     }
 

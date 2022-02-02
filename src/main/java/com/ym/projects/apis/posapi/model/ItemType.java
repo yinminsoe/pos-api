@@ -16,13 +16,14 @@ public class ItemType extends BaseEntity{
     @Column(name="description", nullable = false, length = DESCRIPTION_LENGTH)
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "itemType")
-    private Item item;
+    @OneToOne
+    @JoinColumn(name = "category_id")
+    private ItemCategory itemCategory;
 
     @Builder
-    public ItemType(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String description, Item item) {
+    public ItemType(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String description, ItemCategory itemCategory) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
         this.description = description;
-        this.item = item;
+        this.itemCategory = itemCategory;
     }
 }
