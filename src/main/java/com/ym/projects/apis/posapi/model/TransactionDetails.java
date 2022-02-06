@@ -1,15 +1,21 @@
 package com.ym.projects.apis.posapi.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="transaction_details")
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
+@Table(name="transaction_details", indexes = {
+        @Index(name = "idx_tranaction_line_no", columnList = "transaction_id, line_no", unique = true)
+})
 public class TransactionDetails {
     private static final String ALL_PRICE_COLUMN_DEFINITION = "DECIMAL(12,2) DEFAULT 0.00";
     private static final String ALL_QTY_COLUMN_DEFINITION = "DECIMAL(12,2) DEFAULT 0.00";
@@ -22,15 +28,15 @@ public class TransactionDetails {
     private int lineNo;
 
     @ManyToOne
-    @JoinColumn(name = "transaction_id")
+    @JoinColumn(name = "transaction_id", referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_transaction_details_transaction"))
     private Transaction transaction;
 
     @OneToOne
-    @JoinColumn(name ="item_id")
+    @JoinColumn(name ="item_id", referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_transaction_details_item"))
     private Item item;
 
     @OneToOne
-    @JoinColumn(name = "uom_id")
+    @JoinColumn(name = "uom_id", referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_transaction_details_uom"))
     private UnitOfMeasure uom;
 
     @Column(name = "quantity" , columnDefinition = ALL_QTY_COLUMN_DEFINITION)
@@ -58,6 +64,10 @@ public class TransactionDetails {
         if (!(o instanceof TransactionDetails))
             return false;
         TransactionDetails other = (TransactionDetails)o;
-        return this.getId() == other.getId();
+        return this.getId() == other.getId() ;
+    }
+    @Override
+    public int hashCode() {
+        return (int) (this.getId() * Long.valueOf(this.getLineNo()).hashCode());
     }
 }

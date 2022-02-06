@@ -3,7 +3,7 @@ package com.ym.projects.apis.posapi.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "vendor")
@@ -32,7 +32,7 @@ public class Vendor extends BaseEntity{
     @AttributeOverrides({
             @AttributeOverride(name ="phone1", column = @Column( name = "primary_phone", length = PHONE_LENGTH)),
             @AttributeOverride(name = "phone2", column = @Column( name ="secondary_phone", length = PHONE_LENGTH)),
-            @AttributeOverride( name="phone3", column = @Column(name="phone_3", length = PHONE_LENGTH))
+            @AttributeOverride( name="phone3", column = @Column(name="fax_no", length = PHONE_LENGTH))
     })
     private Phone phone;
 
@@ -40,8 +40,7 @@ public class Vendor extends BaseEntity{
     private double creditLimit;
 
     @Builder
-
-    public Vendor(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String contactName1, String contactName2, String companyName, Address address, Phone phone, double creditLimit) {
+    public Vendor(Long id, LocalDateTime CreateDate, String CreateBy, LocalDateTime UpdateDate, String UpdateBy, String contactName1, String contactName2, String companyName, Address address, Phone phone, double creditLimit) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
         this.contactName1 = contactName1;
         this.contactName2 = contactName2;

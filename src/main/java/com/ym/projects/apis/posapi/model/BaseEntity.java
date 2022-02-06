@@ -1,16 +1,20 @@
 package com.ym.projects.apis.posapi.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-public abstract  class BaseEntity  implements Serializable {
+public class BaseEntity  implements Serializable {
 
     protected static final int DESCRIPTION_LENGTH=70;
     protected static final String ALL_PRICE_COLUMN_DEFINITION = "DECIMAL(12,2) DEFAULT 0.00";
@@ -23,14 +27,17 @@ public abstract  class BaseEntity  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "create_date")
-    private Date CreateDate;
+    @CreationTimestamp
+    private LocalDateTime CreateDate;
 
     @Column(name = "create_by", length = USER_LENGTH)
     private String CreateBy;
 
     @Column(name = "update_date")
-    private Date UpdateDate;
+    @UpdateTimestamp
+    private LocalDateTime UpdateDate;
 
     @Column(name = "update_by", length = USER_LENGTH)
     private String UpdateBy;

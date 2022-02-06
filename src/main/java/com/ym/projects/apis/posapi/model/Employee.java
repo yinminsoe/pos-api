@@ -3,29 +3,30 @@ package com.ym.projects.apis.posapi.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "employee")
-@EqualsAndHashCode(callSuper = false)
 public class Employee extends BaseEntity{
 
-    @Column(name ="login_user", unique = true, nullable = false)
-    private String loginUserId;
 
     @OneToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false, foreignKey = @ForeignKey(name = "fk_employee_company"))
     private Company company;
 
-    @Embedded
-    private Person person;
+    @Column(name ="user_id", unique = true, nullable = false)
+    private String userId;
 
     @Column(name = "role", length = ENUM_TYPE_LENGTH)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Embedded
+    private Person person;
 
     @Embedded
     @AttributeOverrides({
@@ -44,12 +45,12 @@ public class Employee extends BaseEntity{
 
     @Builder
 
-    public Employee(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String loginUserId, Company company, Person person, Role role, Address address, Phone phone) {
+    public Employee(Long id, LocalDateTime CreateDate, String CreateBy, LocalDateTime UpdateDate, String UpdateBy, String userId, Role role, Company company, Person person, Address address, Phone phone) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
-        this.loginUserId = loginUserId;
+        this.userId = userId;
+        this.role = role;
         this.company = company;
         this.person = person;
-        this.role = role;
         this.address = address;
         this.phone = phone;
     }

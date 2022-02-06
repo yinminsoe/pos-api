@@ -2,15 +2,18 @@ package com.ym.projects.apis.posapi.model;
 
 import lombok.*;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
 
-@Entity
-@Table(name="uom")
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@Entity
+@Table(name="uom")
 public class UnitOfMeasure extends BaseEntity{
     @Column(name="name", length = 10)
     private String name;
@@ -26,7 +29,7 @@ public class UnitOfMeasure extends BaseEntity{
 
     @Builder
 
-    public UnitOfMeasure(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String name, String description, String baseUOM, float rateToBase) {
+    public UnitOfMeasure(Long id, LocalDateTime CreateDate, String CreateBy, LocalDateTime UpdateDate, String UpdateBy, String name, String description, String baseUOM, float rateToBase) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
         this.name = name;
         this.description = description;

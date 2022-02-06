@@ -1,10 +1,9 @@
 package com.ym.projects.apis.posapi.model;
 
-import com.sun.istack.Nullable;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="item")
@@ -14,11 +13,35 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class Item extends BaseEntity{
 
+    @OneToOne
+    @JoinColumn(name = "brand_id", nullable = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_item_brand"))
+    private Brand brand;
+
+    @OneToOne
+    @JoinColumn(name = "item_type_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_item_item_type"))
+    private ItemType itemType;
+
+    @OneToOne
+    @JoinColumn(name = "location_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_item_location"))
+    private Location location;
+
+
+    @OneToOne
+    @JoinColumn(name = "uom_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name ="fk_item_uom"))
+    private UnitOfMeasure unitOfMeasure;
+
     @Column(name="item_barcode", length = DESCRIPTION_LENGTH)
     private String itemBarCode;
 
     @Column(name="description", nullable = false , length = DESCRIPTION_LENGTH)
     private String description;
+
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
+
+    @Column(name="quantity" , columnDefinition = ALL_QTY_COLUMN_DEFINITION)
+    private double quantity;
 
     @Column(name="price" , columnDefinition = ALL_PRICE_COLUMN_DEFINITION)
     private double sellingPrice;
@@ -26,43 +49,18 @@ public class Item extends BaseEntity{
     @Column(name="cost_price"  , columnDefinition = ALL_PRICE_COLUMN_DEFINITION)
     private double costPrice;
 
-    @OneToOne
-    @JoinColumn(name = "brand_id", nullable = true)
-    private Brand brand;
-
-    @OneToOne
-    @JoinColumn(name = "item_type_id")
-    private ItemType itemType;
-
-    @Lob
-    @Column(name = "image")
-    private byte[] image;
-
-    @OneToOne
-    @JoinColumn(name = "uom_id")
-    private UnitOfMeasure unitOfMeasure;
-
-    @OneToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
-
-
-    @Column(name="quantity" , columnDefinition = ALL_QTY_COLUMN_DEFINITION)
-    private double quantity;
-
     @Builder
-
-    public Item(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String itemBarCode, String description, double sellingPrice, double costPrice, Brand brand, ItemType itemType, byte[] image, UnitOfMeasure unitOfMeasure, Location location, double quantity) {
+    public Item(Long id, LocalDateTime CreateDate, String CreateBy, LocalDateTime UpdateDate, String UpdateBy, Brand brand, ItemType itemType, Location location, UnitOfMeasure unitOfMeasure, String itemBarCode, String description, byte[] image, double quantity, double sellingPrice, double costPrice) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
-        this.itemBarCode = itemBarCode;
-        this.description = description;
-        this.sellingPrice = sellingPrice;
-        this.costPrice = costPrice;
         this.brand = brand;
         this.itemType = itemType;
-        this.image = image;
-        this.unitOfMeasure = unitOfMeasure;
         this.location = location;
+        this.unitOfMeasure = unitOfMeasure;
+        this.itemBarCode = itemBarCode;
+        this.description = description;
+        this.image = image;
         this.quantity = quantity;
+        this.sellingPrice = sellingPrice;
+        this.costPrice = costPrice;
     }
 }

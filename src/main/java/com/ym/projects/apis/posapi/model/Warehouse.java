@@ -1,35 +1,30 @@
 package com.ym.projects.apis.posapi.model;
 
-import com.ym.projects.apis.posapi.repositories.WarehouseRepository;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@Entity
-@Table(name="warehouse")
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@Entity
+@Table(name="warehouse")
 public class Warehouse extends BaseEntity{
 
     @Column(name ="description", nullable = false, length = DESCRIPTION_LENGTH)
     private String description;
 
     @OneToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_warehouse_company"))
     private Company company;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "warehouse")
-    private Location location;
-
     @Builder
-    public Warehouse(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String description, Company company, Location location) {
+    public Warehouse(Long id, LocalDateTime CreateDate, String CreateBy, LocalDateTime UpdateDate, String UpdateBy, String description, Company company) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
         this.description = description;
         this.company = company;
-        this.location = location;
     }
 }

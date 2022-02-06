@@ -1,22 +1,33 @@
 package com.ym.projects.apis.posapi.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity
-@Table(name="transaction")
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name="transaction", indexes = {
+        @Index(name = "idx_employee_create_date", columnList = "employee_id, create_date", unique = true),
+        @Index(name = "idx_customer_create_date", columnList = "customer_id, create_date", unique = true),
+        @Index(name= "idx_create_date", columnList = "create_date", unique = true)
+})
 public class Transaction extends BaseEntity{
 
+    @OneToOne
+    @JoinColumn(name="employee_id", referencedColumnName = "id", nullable = false, foreignKey =  @ForeignKey(name = "fk_transaction_employee"))
+    private Employee employee;
 
     @OneToOne
-    @JoinColumn(name="employee_id")
-    private Employee employee;
+    @JoinColumn(name="customer_id", referencedColumnName = "id", nullable = true, foreignKey = @ForeignKey(name ="fk_transaction_customer"))
+    private Customer customer;
 
     @Column(name = "total_transaction" , columnDefinition = ALL_QTY_COLUMN_DEFINITION)
     private int total_transaction;
@@ -50,7 +61,6 @@ public class Transaction extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
 
-
     @OneToMany( cascade =  CascadeType.ALL, mappedBy = "transaction")
     private Set<TransactionDetails> transactionDetails;
 
@@ -63,9 +73,6 @@ public class Transaction extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private TransactionStatus transactionStatus;
 
-    @OneToOne
-    @JoinColumn(name="customer_id", nullable = true)
-    private Customer customer;
 
     @Override
     public boolean equals(Object o) {
@@ -77,10 +84,16 @@ public class Transaction extends BaseEntity{
         return this.getId() == other.getId();
     }
 
+    @Override
+    public int hashCode() {
+        return (int) (this.getId() * this.getEmployee().getId().hashCode());
+    }
+
     @Builder
-    public Transaction(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, Employee employee, int total_transaction, int total_quantity, double totalAmount, float headerDiscount, double totalPayment, double changeAmount, double subTotal, double totalCostAmount, double totalProfit, PaymentType paymentType, Set<TransactionDetails> transactionDetails, TransactionType transactionType, TransactionStatus transactionStatus, Customer customer) {
+    public Transaction(Long id, LocalDateTime CreateDate, String CreateBy, LocalDateTime UpdateDate, String UpdateBy, Employee employee, Customer customer, int total_transaction, int total_quantity, double totalAmount, float headerDiscount, double totalPayment, double changeAmount, double subTotal, double totalCostAmount, double totalProfit, PaymentType paymentType, Set<TransactionDetails> transactionDetails, TransactionType transactionType, TransactionStatus transactionStatus) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
         this.employee = employee;
+        this.customer = customer;
         this.total_transaction = total_transaction;
         this.total_quantity = total_quantity;
         this.totalAmount = totalAmount;
@@ -94,6 +107,5 @@ public class Transaction extends BaseEntity{
         this.transactionDetails = transactionDetails;
         this.transactionType = transactionType;
         this.transactionStatus = transactionStatus;
-        this.customer = customer;
     }
 }

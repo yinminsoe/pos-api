@@ -28,7 +28,7 @@ class CompanyServiceImplTest extends BaseTestCase {
 
     @BeforeEach
     void setUp() {
-        company = Company.builder().id(ID).description("YMS YGN COMPANY").country(Country.MY).tax(Tax.builder().taxCode("MYR").taxPercentage(5).build()).build();
+        company = Company.builder().id(ID).description("YMS YGN COMPANY").countryName(Country.MYANMAR).tax(Tax.builder().taxCode("MYR").taxPercentage(5).build()).build();
         companyService = new CompanyServiceImpl(companyRepository);
     }
 

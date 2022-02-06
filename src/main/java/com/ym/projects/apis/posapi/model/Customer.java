@@ -3,7 +3,7 @@ package com.ym.projects.apis.posapi.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -41,7 +41,7 @@ public class Customer extends BaseEntity{
     private double creditLimit;
 
     @Builder
-    public Customer(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String contactName1, String contactName2, String companyName, Address address, Phone phone, double creditLimit) {
+    public Customer(Long id, LocalDateTime CreateDate, String CreateBy, LocalDateTime UpdateDate, String UpdateBy, String contactName1, String contactName2, String companyName, Address address, Phone phone, double creditLimit) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
         this.contactName1 = contactName1;
         this.contactName2 = contactName2;

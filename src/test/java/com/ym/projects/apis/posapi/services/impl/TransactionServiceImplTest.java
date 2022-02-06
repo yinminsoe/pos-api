@@ -18,6 +18,7 @@ import static org.mockito.Mockito.*;
 
 
 class TransactionServiceImplTest extends BaseTestCase {
+    private Employee employee;
     private Transaction transaction;
     private TransactionDetails transactionDetails;
     private  Set<TransactionDetails> transactionDetailss = new HashSet<>();
@@ -33,8 +34,14 @@ class TransactionServiceImplTest extends BaseTestCase {
 
     @BeforeEach
     void setUp() {
+        employee = Employee.builder()
+                .id(ID).person(Person.builder().firstName("First Name").lastName("Last Name").middleName("middle Name").build())
+                .address(Address.builder().address1("Address 1").address2("Address 2").build())
+                .phone(Phone.builder().phone1("Phone 1").phone2("Phone 2").phone3("Phone 3").build())
+                .role(Role.ADMIN)
+                .build();
         transaction = Transaction.builder().id(ID).CreateBy(USER).UpdateBy(USER).CreateDate(CURRENT_DATE)
-                .total_quantity(1).totalAmount(100).totalCostAmount(90).changeAmount(10).totalPayment(100)
+                .employee(employee).total_quantity(1).totalAmount(100).totalCostAmount(90).changeAmount(10).totalPayment(100)
                 .build();
         transactionDetails= TransactionDetails.builder().transaction(transaction).id(ID).lineNo(1).quantity(1).uom(UnitOfMeasure.builder().id(ID).name(UOM).description(UOM).build()).transactionPrice(100).costOfGoodsSold(90).build();
 

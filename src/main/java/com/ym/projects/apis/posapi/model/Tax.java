@@ -5,19 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Embeddable
 @Builder
+@Embeddable
 public class Tax {
     private String taxCode;
     private int taxPercentage;
     private double taxValue;
-
-
 }

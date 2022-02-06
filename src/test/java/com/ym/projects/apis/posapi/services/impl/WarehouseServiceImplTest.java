@@ -1,6 +1,8 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
+import com.ym.projects.apis.posapi.dto.WarehouseDto;
+import com.ym.projects.apis.posapi.mapper.WarehouseMapper;
 import com.ym.projects.apis.posapi.model.Warehouse;
 import com.ym.projects.apis.posapi.repositories.WarehouseRepository;
 import com.ym.projects.apis.posapi.services.WarehouseService;
@@ -23,12 +25,15 @@ class WarehouseServiceImplTest extends BaseTestCase {
 
     @Mock
     private WarehouseRepository warehouseRepository;
+
+    private WarehouseMapper warehouseMapper=WarehouseMapper.INSTANCE;
     private WarehouseService warehouseService;
     private Warehouse warehouse;
+    private WarehouseDto warehouseDto;
 
     @BeforeEach
     void setUp() {
-        warehouseService = new WarehouseServiceImpl(warehouseRepository);
+        warehouseService = new WarehouseServiceImpl( warehouseMapper,warehouseRepository);
         warehouse = Warehouse.builder().id(ID).description(WH_DESC).build();
     }
 
@@ -36,26 +41,23 @@ class WarehouseServiceImplTest extends BaseTestCase {
     void findAllWarehouse() {
         List<Warehouse> warehouseList = new ArrayList<>();
         warehouseList.add(warehouse);
-
         when(warehouseRepository.findAll()).thenReturn(warehouseList);
-        warehouseService.findAllWarehouse();
-
-        assertEquals(1, warehouseList.size());
+        assertEquals(1, warehouseService.findAllWarehouse().size());
     }
 
     @Test
     void findWarehouseById() {
         when(warehouseRepository.findById(ID)).thenReturn(Optional.of(warehouse));
-        Warehouse tempWarehouse = warehouseService.findWarehouseById(ID);
-        assertEquals(ID, tempWarehouse.getId());
+        assertEquals(ID, warehouseService.findWarehouseById(ID).getId());
     }
 
     @Test
     void saveOrUpdateWarehouse() {
         warehouse.setDescription(WH_DESC_2);
-        when(warehouseRepository.save(warehouse)).thenReturn(warehouse);
-        Warehouse tempWarehouse = warehouseService.saveOrUpdateWarehouse(warehouse);
+        when(warehouseRepository.save(any(Warehouse.class))).thenReturn(warehouse);
+        WarehouseDto tempWarehouse = warehouseService.saveOrUpdateWarehouse(warehouseMapper.warehouseToWarehouseDTO(warehouse));
         assertEquals(WH_DESC_2, tempWarehouse.getDescription());
+     //   assertEquals("Some expected message", new NullPointerException().getMessage());
     }
 
     @Test

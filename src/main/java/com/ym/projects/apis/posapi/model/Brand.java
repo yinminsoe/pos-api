@@ -2,15 +2,18 @@ package com.ym.projects.apis.posapi.model;
 
 import lombok.*;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
 
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Embeddable
 @EqualsAndHashCode(callSuper = false)
+@Entity
+@Table(name ="brand")
 public class Brand extends BaseEntity{
     @Column(name = "brand_type")
     private String brandType;
@@ -19,7 +22,7 @@ public class Brand extends BaseEntity{
     private String description;
 
     @Builder
-    public Brand(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String brandType, String description) {
+    public Brand(Long id, LocalDateTime CreateDate, String CreateBy, LocalDateTime UpdateDate, String UpdateBy, String brandType, String description) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
         this.brandType = brandType;
         this.description = description;

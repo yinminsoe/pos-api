@@ -35,7 +35,7 @@ class LocationServiceImplTest extends BaseTestCase {
     void setUp() {
         locationService = new LocationServiceImpl(locationRepository);
         location=Location.builder().id(ID).description(LOC_DESC).build();
-        Warehouse warehouse = Warehouse.builder().id(ID).description(WH_DESC).location(location).build();
+        Warehouse warehouse = Warehouse.builder().id(ID).description(WH_DESC).build();
         location.setWarehouse(warehouse);
     }
     @Test

@@ -3,22 +3,21 @@ package com.ym.projects.apis.posapi.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@Entity
-@Table(name="company")
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@Entity
+@Table(name="company")
 public class Company extends BaseEntity{
     @Column(name ="description", nullable = false)
     private String description;
 
-
     @Enumerated(EnumType.STRING)
-    @Column(name ="country_name")
-    private Country country;
+    private Country countryName;
 
     @Column(name="license_no")
     private String licenseNo;
@@ -37,9 +36,10 @@ public class Company extends BaseEntity{
     @AttributeOverrides({
             @AttributeOverride( name ="phone1", column = @Column(name = "phone_1", length = PHONE_LENGTH)),
             @AttributeOverride( name="phone2", column = @Column(name = "phone_2", length = PHONE_LENGTH)),
-            @AttributeOverride( name="phone3", column = @Column(name="phone_3", length = PHONE_LENGTH))
+            @AttributeOverride( name="phone3", column = @Column(name="fax_no", length = PHONE_LENGTH))
     })
     private Phone phone;
+
 
     @Embedded
     @AttributeOverrides({
@@ -48,12 +48,13 @@ public class Company extends BaseEntity{
             @AttributeOverride(name ="taxValue", column = @Column(name = "tax_value", columnDefinition = "DECIMAL(7,2) DEFAULT 0.00"))
     })
     private Tax tax;
-    @Builder
 
-    public Company(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String description, Country country, String licenseNo, String licenseNo2, Address address, Phone phone, Tax tax) {
+
+    @Builder
+    public Company(Long id, LocalDateTime CreateDate, String CreateBy, LocalDateTime UpdateDate, String UpdateBy, String description, Country countryName, String licenseNo, String licenseNo2, Address address, Phone phone, Tax tax) {
         super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
         this.description = description;
-        this.country = country;
+        this.countryName = countryName;
         this.licenseNo = licenseNo;
         this.licenseNo2 = licenseNo2;
         this.address = address;
