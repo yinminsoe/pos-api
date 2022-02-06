@@ -1,7 +1,7 @@
 package com.ym.projects.apis.posapi.services;
 
 
-import com.ym.projects.apis.posapi.model.Brand;
+import com.ym.projects.apis.posapi.entity.Brand;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services;
 
-import com.ym.projects.apis.posapi.model.UnitOfMeasure;
+import com.ym.projects.apis.posapi.entity.UnitOfMeasure;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services.impl;
 
-import com.ym.projects.apis.posapi.model.Customer;
+import com.ym.projects.apis.posapi.entity.Customer;
 import com.ym.projects.apis.posapi.repositories.CustomerRepository;
 import com.ym.projects.apis.posapi.services.CustomerService;
 import lombok.extern.slf4j.Slf4j;

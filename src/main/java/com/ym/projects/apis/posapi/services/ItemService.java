@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services;
 
-import com.ym.projects.apis.posapi.model.Item;
+import com.ym.projects.apis.posapi.entity.Item;
 
 import java.util.List;
 

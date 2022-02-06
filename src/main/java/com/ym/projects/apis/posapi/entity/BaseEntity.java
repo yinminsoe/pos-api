@@ -1,4 +1,4 @@
-package com.ym.projects.apis.posapi.model;
+package com.ym.projects.apis.posapi.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-public class BaseEntity  implements Serializable {
+public class BaseEntity implements Serializable {
 
-    protected static final int DESCRIPTION_LENGTH=70;
+    protected static final int NAME_LENGTH = 70;
     protected static final String ALL_PRICE_COLUMN_DEFINITION = "DECIMAL(12,2) DEFAULT 0.00";
     protected static final String ALL_QTY_COLUMN_DEFINITION = "DECIMAL(12,2) DEFAULT 0.00";
     protected static final int ADDRESS_LENGTH = 120;
@@ -30,16 +30,16 @@ public class BaseEntity  implements Serializable {
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private LocalDateTime CreateDate;
+    private LocalDateTime createDate;
 
     @Column(name = "create_by", length = USER_LENGTH)
-    private String CreateBy;
+    private String createBy;
 
     @Column(name = "update_date")
     @UpdateTimestamp
-    private LocalDateTime UpdateDate;
+    private LocalDateTime updateDate;
 
     @Column(name = "update_by", length = USER_LENGTH)
-    private String UpdateBy;
+    private String updateBy;
 
 }

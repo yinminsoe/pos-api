@@ -1,15 +1,13 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.UnitOfMeasure;
+import com.ym.projects.apis.posapi.entity.UnitOfMeasure;
 import com.ym.projects.apis.posapi.repositories.UnitOfMeasureRepository;
 import com.ym.projects.apis.posapi.services.UnitOfMeasureService;
-import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.internal.matchers.Any;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +31,7 @@ class UnitOfMeasureServiceImplTest extends BaseTestCase {
     @BeforeEach
     void setUp(){
         unitOfMeasureService = new UnitOfMeasureServiceImpl(unitOfMeasureRepository);
-        unitOfMeasure = UnitOfMeasure.builder().id(ID).name(BASE_UOM).description("Pieces").baseUOM(BASE_UOM).rateToBase(BASE_RATE).build();
+        unitOfMeasure = UnitOfMeasure.builder().id(ID).name(BASE_UOM).name("Pieces").baseUOM(BASE_UOM).rateToBase(BASE_RATE).build();
     }
 
     @Test

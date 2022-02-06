@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.repositories;
 
-import com.ym.projects.apis.posapi.model.Employee;
+import com.ym.projects.apis.posapi.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

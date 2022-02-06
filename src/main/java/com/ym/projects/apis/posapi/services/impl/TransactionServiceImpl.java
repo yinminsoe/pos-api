@@ -1,7 +1,7 @@
 package com.ym.projects.apis.posapi.services.impl;
 
-import com.ym.projects.apis.posapi.model.Transaction;
-import com.ym.projects.apis.posapi.model.TransactionDetails;
+import com.ym.projects.apis.posapi.entity.Transaction;
+import com.ym.projects.apis.posapi.entity.TransactionDetails;
 import com.ym.projects.apis.posapi.repositories.TransactionDetailsRepository;
 import com.ym.projects.apis.posapi.repositories.TransactionRepository;
 import com.ym.projects.apis.posapi.services.TransactionService;

@@ -10,6 +10,7 @@ import java.util.Date;
 
 public class BaseTestCase {
     protected final Long ID = 1L;
+    protected final Long ID2 = 2L;
     protected static final String USER ="YIN MIN";
     protected static final LocalDateTime CURRENT_DATE =LocalDateTime.now();
     protected static final String UOM = "PCS";

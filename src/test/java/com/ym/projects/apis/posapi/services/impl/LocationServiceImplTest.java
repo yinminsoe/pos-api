@@ -1,18 +1,13 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.Location;
-import com.ym.projects.apis.posapi.model.Warehouse;
+import com.ym.projects.apis.posapi.entity.Location;
+import com.ym.projects.apis.posapi.entity.Warehouse;
 import com.ym.projects.apis.posapi.repositories.LocationRepository;
-import com.ym.projects.apis.posapi.repositories.WarehouseRepository;
 import com.ym.projects.apis.posapi.services.LocationService;
-import com.ym.projects.apis.posapi.services.WarehouseService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +29,8 @@ class LocationServiceImplTest extends BaseTestCase {
     @BeforeEach
     void setUp() {
         locationService = new LocationServiceImpl(locationRepository);
-        location=Location.builder().id(ID).description(LOC_DESC).build();
-        Warehouse warehouse = Warehouse.builder().id(ID).description(WH_DESC).build();
+        location=Location.builder().id(ID).name(LOC_DESC).build();
+        Warehouse warehouse = Warehouse.builder().id(ID).name(WH_DESC).build();
         location.setWarehouse(warehouse);
     }
     @Test

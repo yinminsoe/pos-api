@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services;
 
-import com.ym.projects.apis.posapi.model.Transaction;
+import com.ym.projects.apis.posapi.entity.Transaction;
 
 import java.util.List;
 

@@ -1,21 +1,22 @@
 package com.ym.projects.apis.posapi.dto;
 
-import com.ym.projects.apis.posapi.model.Company;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class WarehouseDto extends BaseDto {
-    private String description;
-    private Company company;
+    private String name;
+    private Long companyId;
 
     @Builder
-    public WarehouseDto(Long id, Date CreateDate, String CreateBy, Date UpdateDate, String UpdateBy, String description, Company company) {
-        super(id, CreateDate, CreateBy, UpdateDate, UpdateBy);
-        this.description = description;
-        this.company = company;
+    public WarehouseDto(Long id, LocalDateTime createDate, String createBy, LocalDateTime updateDate, String updateBy, String name, Long companyId) {
+        super(id, createDate, createBy, updateDate, updateBy);
+        this.name = name;
+        this.companyId = companyId;
     }
 }

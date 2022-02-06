@@ -1,7 +1,7 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.*;
+import com.ym.projects.apis.posapi.entity.*;
 import com.ym.projects.apis.posapi.repositories.ItemRepository;
 import com.ym.projects.apis.posapi.services.ItemService;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,11 +39,11 @@ class ItemServiceImplTest extends BaseTestCase {
 
     @BeforeEach
     void setUp() {
-        itemType = ItemType.builder().id(ID).description(TYPE_DESC_1).build();
-        itemCategory = ItemCategory.builder().id(ID).description(TYPE_DESC_1).build();
-        unitOfMeasure=UnitOfMeasure.builder().id(ID).description(CATEGORY_DESC_1).build();
-        warehouse=Warehouse.builder().id(ID).description(WH_DESC).build();
-        location=Location.builder().id(ID).description(LOC_DESC).build();
+        itemType = ItemType.builder().id(ID).name(TYPE_DESC_1).build();
+        itemCategory = ItemCategory.builder().id(ID).name(TYPE_DESC_1).build();
+        unitOfMeasure=UnitOfMeasure.builder().id(ID).name(CATEGORY_DESC_1).build();
+        warehouse=Warehouse.builder().id(ID).name(WH_DESC).build();
+        location=Location.builder().id(ID).name(LOC_DESC).build();
         item=Item.builder().itemType(itemType).unitOfMeasure(unitOfMeasure).location(location).build();
         itemService = new ItemServiceImpl(itemRepository);
     }

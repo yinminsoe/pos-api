@@ -1,9 +1,9 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.Company;
-import com.ym.projects.apis.posapi.model.Country;
-import com.ym.projects.apis.posapi.model.Tax;
+import com.ym.projects.apis.posapi.entity.Company;
+import com.ym.projects.apis.posapi.entity.Country;
+import com.ym.projects.apis.posapi.entity.Tax;
 import com.ym.projects.apis.posapi.repositories.CompanyRepository;
 import com.ym.projects.apis.posapi.services.CompanyService;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +28,7 @@ class CompanyServiceImplTest extends BaseTestCase {
 
     @BeforeEach
     void setUp() {
-        company = Company.builder().id(ID).description("YMS YGN COMPANY").countryName(Country.MYANMAR).tax(Tax.builder().taxCode("MYR").taxPercentage(5).build()).build();
+        company = Company.builder().id(ID).name("YMS YGN COMPANY").countryName(Country.MYANMAR).tax(Tax.builder().taxCode("MYR").taxPercentage(5).build()).build();
         companyService = new CompanyServiceImpl(companyRepository);
     }
 

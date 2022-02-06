@@ -1,8 +1,7 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.Item;
-import com.ym.projects.apis.posapi.model.ItemType;
+import com.ym.projects.apis.posapi.entity.ItemType;
 import com.ym.projects.apis.posapi.repositories.ItemTypeRepository;
 import com.ym.projects.apis.posapi.services.ItemTypeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +28,7 @@ class ItemTypeServiceImplTest extends BaseTestCase {
 
     @BeforeEach
     public void setUp(){
-        itemType = ItemType.builder().id(ID).description(DESC_1).build();
+        itemType = ItemType.builder().id(ID).name(DESC_1).build();
         itemTypeService= new ItemTypeServiceImpl(itemTypeRepository);
     }
 

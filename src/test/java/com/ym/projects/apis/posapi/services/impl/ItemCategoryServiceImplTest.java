@@ -1,7 +1,7 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.ItemCategory;
+import com.ym.projects.apis.posapi.entity.ItemCategory;
 import com.ym.projects.apis.posapi.repositories.ItemCategoryRepository;
 import com.ym.projects.apis.posapi.services.ItemCategoryService;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +28,7 @@ class ItemCategoryServiceImplTest extends BaseTestCase {
     @BeforeEach
     void setUp() {
         itemCategoryService = new ItemCategoryServiceImpl(itemCategoryRepository);
-        itemCategory = ItemCategory.builder().id(ID).description(DESC_1).build();
+        itemCategory = ItemCategory.builder().id(ID).name(DESC_1).build();
 
     }
 

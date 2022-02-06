@@ -1,7 +1,7 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.*;
+import com.ym.projects.apis.posapi.entity.*;
 import com.ym.projects.apis.posapi.repositories.TransactionDetailsRepository;
 import com.ym.projects.apis.posapi.repositories.TransactionRepository;
 import com.ym.projects.apis.posapi.services.TransactionService;
@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 
@@ -40,10 +39,10 @@ class TransactionServiceImplTest extends BaseTestCase {
                 .phone(Phone.builder().phone1("Phone 1").phone2("Phone 2").phone3("Phone 3").build())
                 .role(Role.ADMIN)
                 .build();
-        transaction = Transaction.builder().id(ID).CreateBy(USER).UpdateBy(USER).CreateDate(CURRENT_DATE)
+        transaction = Transaction.builder().id(ID).createBy(USER).updateBy(USER).createDate(CURRENT_DATE)
                 .employee(employee).total_quantity(1).totalAmount(100).totalCostAmount(90).changeAmount(10).totalPayment(100)
                 .build();
-        transactionDetails= TransactionDetails.builder().transaction(transaction).id(ID).lineNo(1).quantity(1).uom(UnitOfMeasure.builder().id(ID).name(UOM).description(UOM).build()).transactionPrice(100).costOfGoodsSold(90).build();
+        transactionDetails= TransactionDetails.builder().transaction(transaction).id(ID).lineNo(1).quantity(1).uom(UnitOfMeasure.builder().id(ID).name(UOM).name(UOM).build()).transactionPrice(100).costOfGoodsSold(90).build();
 
         transactionDetailss.add(transactionDetails);
         transaction.setTransactionDetails(transactionDetailss);

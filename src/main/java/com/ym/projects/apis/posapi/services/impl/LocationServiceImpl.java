@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services.impl;
 
-import com.ym.projects.apis.posapi.model.Location;
+import com.ym.projects.apis.posapi.entity.Location;
 import com.ym.projects.apis.posapi.repositories.LocationRepository;
 import com.ym.projects.apis.posapi.services.LocationService;
 import lombok.extern.slf4j.Slf4j;

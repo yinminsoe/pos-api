@@ -1,4 +1,4 @@
-package com.ym.projects.apis.posapi.model;
+package com.ym.projects.apis.posapi.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,14 +14,14 @@ import javax.persistence.Embeddable;
 @Builder
 @Embeddable
 public class Person {
-    protected static final int NAME_LENGTH=30;
-    @Column(name="first_name", length = NAME_LENGTH)
+    protected static final int NAME_LENGTH = 30;
+    @Column(name = "first_name", length = NAME_LENGTH)
     private String firstName;
 
-    @Column(name="middle_name", length = NAME_LENGTH)
+    @Column(name = "middle_name", length = NAME_LENGTH)
     private String middleName;
 
-    @Column(name="last_name", length = NAME_LENGTH)
+    @Column(name = "last_name", length = NAME_LENGTH)
     private String lastName;
 
 

@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services.impl;
 
-import com.ym.projects.apis.posapi.model.Vendor;
+import com.ym.projects.apis.posapi.entity.Vendor;
 import com.ym.projects.apis.posapi.repositories.VendorRepository;
 import com.ym.projects.apis.posapi.services.VendorService;
 import lombok.extern.slf4j.Slf4j;

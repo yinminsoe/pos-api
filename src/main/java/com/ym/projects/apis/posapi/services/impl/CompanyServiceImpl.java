@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services.impl;
 
-import com.ym.projects.apis.posapi.model.Company;
+import com.ym.projects.apis.posapi.entity.Company;
 import com.ym.projects.apis.posapi.repositories.CompanyRepository;
 import com.ym.projects.apis.posapi.services.CompanyService;
 import lombok.extern.slf4j.Slf4j;

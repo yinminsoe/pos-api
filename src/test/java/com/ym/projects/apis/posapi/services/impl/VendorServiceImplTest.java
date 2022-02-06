@@ -1,10 +1,9 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.Address;
-import com.ym.projects.apis.posapi.model.Person;
-import com.ym.projects.apis.posapi.model.Phone;
-import com.ym.projects.apis.posapi.model.Vendor;
+import com.ym.projects.apis.posapi.entity.Address;
+import com.ym.projects.apis.posapi.entity.Phone;
+import com.ym.projects.apis.posapi.entity.Vendor;
 import com.ym.projects.apis.posapi.repositories.VendorRepository;
 import com.ym.projects.apis.posapi.services.VendorService;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class VendorServiceImplTest extends BaseTestCase {
@@ -32,7 +30,7 @@ class VendorServiceImplTest extends BaseTestCase {
         vendorService = new VendorServiceImpl(vendorRepository);
         vendor = Vendor.builder()
                 .id(ID)
-                .contactName1("CONATCT NAME 1").contactName2("CONTACT NAME 2")
+                .name("CONATCT NAME 1").contactName2("CONTACT NAME 2")
                 .address(Address.builder().address1("Address 1").address2("Address 2").build())
                 .phone(Phone.builder().phone1("Phone 1").phone2("Phone 2").phone3("Phone 3").build())
                 .creditLimit(0L).build();

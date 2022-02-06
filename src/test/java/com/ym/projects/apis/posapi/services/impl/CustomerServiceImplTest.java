@@ -1,10 +1,9 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.Address;
-import com.ym.projects.apis.posapi.model.Customer;
-import com.ym.projects.apis.posapi.model.Person;
-import com.ym.projects.apis.posapi.model.Phone;
+import com.ym.projects.apis.posapi.entity.Address;
+import com.ym.projects.apis.posapi.entity.Customer;
+import com.ym.projects.apis.posapi.entity.Phone;
 import com.ym.projects.apis.posapi.repositories.CustomerRepository;
 import com.ym.projects.apis.posapi.services.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +32,7 @@ class CustomerServiceImplTest extends BaseTestCase {
     void setUp() {
         customer = Customer.builder()
                 .id(ID)
-                .contactName1("CONATCT NAME 1").contactName2("CONTACT NAME 2")
+                .name("CONATCT NAME 1").contactName2("CONTACT NAME 2")
                 .address(Address.builder().address1("Addresss 1").address2("Delivery addres 1").build())
                 .phone(Phone.builder().phone1("+65-2343243").phone2("+65-234343").phone3("+65-2343").build())
                 .build();

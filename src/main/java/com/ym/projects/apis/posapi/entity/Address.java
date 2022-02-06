@@ -1,4 +1,4 @@
-package com.ym.projects.apis.posapi.model;
+package com.ym.projects.apis.posapi.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

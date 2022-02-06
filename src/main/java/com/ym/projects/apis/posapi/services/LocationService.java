@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services;
 
-import com.ym.projects.apis.posapi.model.Location;
+import com.ym.projects.apis.posapi.entity.Location;
 
 import java.util.List;
 

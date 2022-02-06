@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services.impl;
 
-import com.ym.projects.apis.posapi.model.Brand;
+import com.ym.projects.apis.posapi.entity.Brand;
 import com.ym.projects.apis.posapi.repositories.BrandRepository;
 import com.ym.projects.apis.posapi.services.BrandService;
 import lombok.extern.slf4j.Slf4j;

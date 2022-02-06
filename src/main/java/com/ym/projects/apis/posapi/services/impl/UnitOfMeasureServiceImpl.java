@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services.impl;
 
-import com.ym.projects.apis.posapi.model.UnitOfMeasure;
+import com.ym.projects.apis.posapi.entity.UnitOfMeasure;
 import com.ym.projects.apis.posapi.repositories.UnitOfMeasureRepository;
 import com.ym.projects.apis.posapi.services.UnitOfMeasureService;
 import lombok.extern.slf4j.Slf4j;

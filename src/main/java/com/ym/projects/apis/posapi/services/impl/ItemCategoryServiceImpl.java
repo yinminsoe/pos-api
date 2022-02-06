@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.services.impl;
 
-import com.ym.projects.apis.posapi.model.ItemCategory;
+import com.ym.projects.apis.posapi.entity.ItemCategory;
 import com.ym.projects.apis.posapi.repositories.ItemCategoryRepository;
 import com.ym.projects.apis.posapi.services.ItemCategoryService;
 import lombok.extern.slf4j.Slf4j;

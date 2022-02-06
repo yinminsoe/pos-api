@@ -1,7 +1,7 @@
 package com.ym.projects.apis.posapi.services.impl;
 
 import com.ym.projects.apis.posapi.BaseTestCase;
-import com.ym.projects.apis.posapi.model.*;
+import com.ym.projects.apis.posapi.entity.*;
 import com.ym.projects.apis.posapi.repositories.EmployeeRepository;
 import com.ym.projects.apis.posapi.services.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class EmployeeServiceImplTest extends BaseTestCase {
