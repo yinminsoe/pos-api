@@ -1,6 +1,6 @@
 package com.ym.projects.apis.posapi.exception;
 
-public class ResourceNotFoundException extends Exception{
+public class ResourceNotFoundException extends RuntimeException{
 
     public ResourceNotFoundException() {
     }

@@ -57,16 +57,28 @@ class WarehouseServiceImplTest extends BaseTestCase {
     }
 
     @Test
-    void saveOrUpdateWarehouse() {
+    void saveOrUpdateWarehouseForNew() {
+        warehouse.setId(null);
         warehouse.setName(WH_DESC_2);
         when(warehouseRepository.save(any(Warehouse.class))).thenReturn(warehouse);
-        WarehouseDto tempWarehouse = warehouseService.saveOrUpdateWarehouse(warehouseMapper.warehouseToWarehouseDTO(warehouse));
+        WarehouseDto tempWarehouse = warehouseService.saveOrUpdateWarehouse(warehouseMapper.toDto(warehouse));
         assertEquals(WH_DESC_2, tempWarehouse.getName());
      //   assertEquals("Some expected message", new NullPointerException().getMessage());
+    }
+    @Test
+    void saveOrUpdateWarehouseForUpdate() {
+        when(warehouseRepository.existsById(any(Long.class))).thenReturn(true);
+        warehouse.setId(ID);
+        warehouse.setName(WH_DESC_2);
+        when(warehouseRepository.save(any(Warehouse.class))).thenReturn(warehouse);
+        WarehouseDto tempWarehouse = warehouseService.saveOrUpdateWarehouse(warehouseMapper.toDto(warehouse));
+        assertEquals(WH_DESC_2, tempWarehouse.getName());
+        //   assertEquals("Some expected message", new NullPointerException().getMessage());
     }
 
     @Test
     void deleteWarehouseById() throws ResourceNotFoundException {
+        when(warehouseRepository.existsById(any(Long.class))).thenReturn(true);
         warehouseService.deleteWarehouseById(ID);
         verify(warehouseRepository, times(1)).deleteById(ID);
     }

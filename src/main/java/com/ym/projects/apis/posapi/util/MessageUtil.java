@@ -1,18 +1,23 @@
 package com.ym.projects.apis.posapi.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
-
-import java.text.MessageFormat;
 
 @Component
 public class MessageUtil {
 
-    @Autowired
-    private Environment env;
+    private final MessageSource messageSource;
 
-    public String getPropertyByName(String name, String... obj){
-       return MessageFormat.format(env.getProperty(name), obj);
+    public MessageUtil(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    public String getProperty(String name){
+        return messageSource.getMessage(name, null, LocaleContextHolder.getLocale());
+    }
+
+    public String getPropertyWithPlaceHolder(String name, Object[] objs){
+       return messageSource.getMessage(name, objs, LocaleContextHolder.getLocale());
     }
 }

@@ -17,7 +17,7 @@ import java.util.Locale;
 @NoArgsConstructor
 @MappedSuperclass
 public class BaseEntityWithName extends BaseEntity {
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = NAME_LENGTH)
     private String name;
 
     public BaseEntityWithName(Long id, LocalDateTime createDate, String createBy, LocalDateTime updateDate, String updateBy, String name) {

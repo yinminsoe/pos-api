@@ -4,13 +4,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class WarehouseDto extends BaseDto {
+    @NotBlank(message = "Name is mandatory")
+    @Size(max=NAME_LENGTH)
     private String name;
+
     private Long companyId;
 
     @Builder

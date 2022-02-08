@@ -6,13 +6,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = {BaseDtoMapper.class})
-public interface WarehouseMapper {
+@Mapper
+ public interface WarehouseMapper  {
     WarehouseMapper INSTANCE = Mappers.getMapper(WarehouseMapper.class);
 
     @Mapping(source = "company.id" , target = "companyId")
-    WarehouseDto warehouseToWarehouseDTO(Warehouse warehouse);
+    WarehouseDto toDto(Warehouse warehouse);
 
    @Mapping(source = "companyId" , target = "company.id")
-    Warehouse warehouseDtoToWarehouse(WarehouseDto warehouse);
+    Warehouse toEntity(WarehouseDto warehouse);
 }

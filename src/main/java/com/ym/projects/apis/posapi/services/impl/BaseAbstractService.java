@@ -3,7 +3,7 @@ package com.ym.projects.apis.posapi.services.impl;
 import com.ym.projects.apis.posapi.util.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class BaseService {
+public abstract class BaseAbstractService {
     private MessageUtil messageUtil;
 
     public MessageUtil getMessageUtil() {
@@ -15,7 +15,10 @@ public abstract class BaseService {
         this.messageUtil = messageUtil;
     }
 
-    protected String getMessage(String name, String... obj){
-        return messageUtil.getPropertyByName(name, obj);
+    protected String getMessage(String name){
+        return messageUtil.getProperty(name);
+    }
+    protected String getMessageWithPlaceHolder(String name, String... obj){
+        return messageUtil.getPropertyWithPlaceHolder(name, obj);
     }
 }

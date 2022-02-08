@@ -1,9 +1,9 @@
-package com.ym.projects.apis.posapi.controllers;
+package com.ym.projects.apis.posapi.resources;
 
 import com.ym.projects.apis.posapi.util.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class BaseController {
+public abstract class BaseResource {
 
     private MessageUtil messageUtil;
 
@@ -16,7 +16,4 @@ public abstract class BaseController {
         this.messageUtil = messageUtil;
     }
 
-    protected String getMessage(String name, String... obj){
-        return messageUtil.getPropertyByName(name, obj);
-    }
 }

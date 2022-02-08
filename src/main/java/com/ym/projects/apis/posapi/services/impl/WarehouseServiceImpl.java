@@ -7,7 +7,6 @@ import com.ym.projects.apis.posapi.entity.Warehouse;
 import com.ym.projects.apis.posapi.repositories.WarehouseRepository;
 import com.ym.projects.apis.posapi.services.WarehouseService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class WarehouseServiceImpl extends BaseService implements WarehouseService {
+public class WarehouseServiceImpl extends BaseAbstractService implements WarehouseService {
 
     private final WarehouseMapper warehouseMapper;
     private final WarehouseRepository warehouseRepository;
@@ -28,35 +27,59 @@ public class WarehouseServiceImpl extends BaseService implements WarehouseServic
 
     @Override
     public List<WarehouseDto> findAllWarehouse() {
-        log.debug("findAllWarehouse");
         return warehouseRepository.findAll()
                 .stream()
-                .map(warehouseMapper::warehouseToWarehouseDTO)
+                .map(warehouseMapper::toDto)
                 .collect(Collectors.toList());
 
     }
 
     @Override
-    public WarehouseDto findWarehouseById(Long id) throws ResourceNotFoundException {
+    public WarehouseDto findWarehouseById(Long id) {
         Optional<Warehouse> optionalWarehouse=warehouseRepository.findById(id);
         if(optionalWarehouse.isPresent()){
-            return warehouseMapper.warehouseToWarehouseDTO(optionalWarehouse.get());
+            return warehouseMapper.toDto(optionalWarehouse.get());
         }else{
-            throw new ResourceNotFoundException(getMessage("wh.not.found", new String[]{String.valueOf(id),""}));
+            throw new ResourceNotFoundException(getMessageWithPlaceHolder("wh.not.found", new String[]{String.valueOf(id),""}));
         }
     }
 
     @Override
     public WarehouseDto saveOrUpdateWarehouse(WarehouseDto warehouseDto) {
-        return warehouseMapper.warehouseToWarehouseDTO(warehouseRepository.save(warehouseMapper.warehouseDtoToWarehouse(warehouseDto)));
+        Long id = warehouseDto.getId();
+        if (id != null && id > 0) {
+            //old
+            if(existsById(id, "action.update")){
+                return warehouseMapper.toDto(warehouseRepository.save(warehouseMapper.toEntity(warehouseDto)));
+            }
+            else{
+               return null;
+            }
+        }else{
+            //new
+            return warehouseMapper.toDto(warehouseRepository.save(warehouseMapper.toEntity(warehouseDto)));
+        }
     }
 
     @Override
-    public void deleteWarehouseById(Long id) throws ResourceNotFoundException {
-        try{
+    public void deleteWarehouseById(Long id) {
+        if(existsById(id, "action.delete")){
             warehouseRepository.deleteById(id);
-        }catch (EmptyResultDataAccessException e){
-            throw new ResourceNotFoundException(getMessage("wh.not.found", new String[]{String.valueOf(id), getMessage("action.delete")}));
+        }
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return warehouseRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id, String action) {
+        //existsById
+        if (!this.existsById(id)) {
+            throw new ResourceNotFoundException(getMessageWithPlaceHolder("wh.not.found", new String[]{String.valueOf(id), getMessage(action)}));
+        } else{
+            return true;
         }
     }
 }
