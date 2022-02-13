@@ -12,6 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WarehouseDtoList extends BaseDtoList{
-    @JsonProperty("warehouseList")
+    @JsonProperty("warehouses")
     private List<WarehouseDto> warehouseDtoList = new ArrayList<WarehouseDto>();
 }

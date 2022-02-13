@@ -21,7 +21,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class WarehouseResource extends BaseResource {
     private final WarehouseService warehouseService;
 
-
     public WarehouseResource(WarehouseService warehouseService) {
         this.warehouseService = warehouseService;
     }
@@ -75,7 +74,7 @@ public class WarehouseResource extends BaseResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<WarehouseDto> saveOrUpdateWarehouse(@PathVariable Long id, @RequestBody WarehouseDto warehouseDto) {
+    public ResponseEntity<WarehouseDto> saveOrUpdateWarehouse(@PathVariable Long id,@Valid @RequestBody WarehouseDto warehouseDto) {
         warehouseDto.setId(id);
         WarehouseDto warehouseDtoSavedResult= warehouseService.saveOrUpdateWarehouse(warehouseDto);
         HttpHeaders headers = new HttpHeaders();
@@ -88,7 +87,7 @@ public class WarehouseResource extends BaseResource {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteWarehouseById(@PathVariable("id")Long id) throws ResourceNotFoundException {
         warehouseService.deleteWarehouseById(id);
     }

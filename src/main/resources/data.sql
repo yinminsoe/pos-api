@@ -14,6 +14,7 @@ insert into employee (id, create_by, create_date, update_by, update_date, user_i
 
 insert into warehouse (id, create_by, create_date, update_by, update_date, company_id, name) values (1, 'YINMIN', LOCALTIMESTAMP(3), 'YINMIN', LOCALTIMESTAMP(3), 1, 'SOUTH DAGON WAREHOUSE YANGON');
 insert into warehouse (id, create_by, create_date, update_by, update_date,  company_id, name) values (2, 'YINMIN', LOCALTIMESTAMP(3), 'YINMIN', LOCALTIMESTAMP(3), 1, 'DOWNTOWN WAREHOUSE YANGON');
+insert into warehouse (id, create_by, create_date, update_by, update_date,  company_id, name) values (3, 'YINMIN', LOCALTIMESTAMP(3), 'YINMIN', LOCALTIMESTAMP(3), 1, 'DOWNTOWN WAREHOUSE YANGON');
 insert into location (id, create_by, create_date, update_by, update_date, name, warehouse_id) values (1, 'YINMIN', LOCALTIMESTAMP(3) , 'YINMIN', LOCALTIMESTAMP(3) , 'SOUTH DAGON NO(2) MARKET YANGON', 1);
 insert into location (id, create_by, create_date, update_by, update_date, name, warehouse_id) values (2, 'YINMIN', LOCALTIMESTAMP(3) , 'YINMIN', LOCALTIMESTAMP(3) , 'SOUTH DAGON HOME YANGON', 1);
 insert into location (id, create_by, create_date, update_by, update_date, name, warehouse_id) values (3, 'YINMIN', LOCALTIMESTAMP(3) , 'YINMIN', LOCALTIMESTAMP(3) , 'DOWNTOWN HLEDAN MARKET YANGON', 2);
