@@ -1,16 +1,20 @@
 package com.ym.projects.apis.posapi.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "vendor")
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@Entity
+@Table(name = "vendor")
+@SQLDelete(sql = "UPDATE vendor SET record_status = 'DELETED' WHERE id = ?", check = ResultCheckStyle.COUNT)
 public class Vendor extends BaseEntityWithName {
 
     @Column(name = "contact_name2", nullable = true)
@@ -38,8 +42,9 @@ public class Vendor extends BaseEntityWithName {
     private double creditLimit;
 
     @Builder
-    public Vendor(Long id, LocalDateTime createDate, String createBy, LocalDateTime updateDate, String updateBy, String name, String contactName2, String companyName, Address address, Phone phone, double creditLimit) {
-        super(id, createDate, createBy, updateDate, updateBy, name);
+
+    public Vendor(Long id, LocalDateTime createDate, String createBy, LocalDateTime updateDate, String updateBy, RecordStatus recordStatus, String name, String contactName2, String companyName, Address address, Phone phone, double creditLimit) {
+        super(id, createDate, createBy, updateDate, updateBy, recordStatus, name);
         this.contactName2 = contactName2;
         this.companyName = companyName;
         this.address = address;

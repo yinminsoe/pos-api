@@ -29,16 +29,16 @@ class WarehouseMapperTest extends BaseTestCase {
     @Test
     void toDto() {
         warehouseDto = warehouseMapper.toDto(warehouse);
-        assertEquals(warehouseDto.getId(), warehouse.getId());
-        assertEquals(warehouseDto.getName(), warehouse.getName());
-        assertEquals(warehouseDto.getCompanyId(), warehouse.getCompany().getId());
+        assertEquals(warehouse.getId(), warehouseDto.getId());
+        assertEquals(warehouse.getName(), warehouseDto.getName());
+        assertEquals(warehouse.getCompany().getId(), warehouseDto.getCompanyId());
     }
 
     @Test
     void toEntity() {
         warehouse = warehouseMapper.toEntity(warehouseDto);
-        assertEquals(warehouse.getId(), warehouseDto.getId());
-        assertEquals(warehouse.getName(), warehouseDto.getName());
-        assertEquals(warehouse.getCompany().getId(), warehouseDto.getCompanyId());
+        assertEquals(warehouseDto.getId(), warehouse.getId());
+        assertEquals(warehouseDto.getName(), warehouse.getName());
+        assertEquals(warehouseDto.getCompanyId(), warehouse.getCompany().getId());
     }
 }

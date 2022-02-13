@@ -35,11 +35,8 @@ class WarehouseResourceTest extends BaseResourceTest{
     private final String WH_DESC3 = "WAREHOUSE 3";
 
     private final static String BASE_URL ="/warehouse";
-    private final static String URL_W_ID ="/warehouse/{id}";
+    private final static String URL_W_ID =BASE_URL+"/{id}";
     private MockMvc mockMvc;
-
-    @Autowired
-    private WebApplicationContext webApplicationContext;
 
 
     @Autowired
@@ -48,8 +45,6 @@ class WarehouseResourceTest extends BaseResourceTest{
     @Autowired
     private WarehouseRepository warehouseRepository;
 
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
@@ -113,12 +108,5 @@ class WarehouseResourceTest extends BaseResourceTest{
     }
 
 
-    private String asJsonString(Object obj){
-        try{
-            return objectMapper.writeValueAsString(obj);
-        }catch (Exception e){
-            throw  new RuntimeException(e.getMessage());
-        }
 
-    }
 }

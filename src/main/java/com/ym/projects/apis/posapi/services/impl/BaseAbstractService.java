@@ -1,7 +1,9 @@
 package com.ym.projects.apis.posapi.services.impl;
 
+import com.ym.projects.apis.posapi.exception.ResourceNotFoundException;
 import com.ym.projects.apis.posapi.util.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public abstract class BaseAbstractService {
     private MessageUtil messageUtil;
@@ -18,7 +20,9 @@ public abstract class BaseAbstractService {
     protected String getMessage(String name){
         return messageUtil.getProperty(name);
     }
+
     protected String getMessageWithPlaceHolder(String name, String... obj){
         return messageUtil.getPropertyWithPlaceHolder(name, obj);
     }
+
 }

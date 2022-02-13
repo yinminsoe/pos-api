@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,7 +23,7 @@ import java.util.Set;
         @Index(name = "idx_customer_transaction_date", columnList = "customer_id, transaction_date"),
         @Index(name = "idx_create_date", columnList = "create_date", unique = true)
 })
-public class Transaction extends BaseEntity {
+public class Transaction extends BaseHardEntity {
 
     @CreationTimestamp
     @Column(name = "transaction_date")
@@ -97,7 +99,6 @@ public class Transaction extends BaseEntity {
     }
 
     @Builder
-
     public Transaction(Long id, LocalDateTime createDate, String createBy, LocalDateTime updateDate, String updateBy, LocalDate transactionDate, Employee employee, Customer customer, int total_transaction, int total_quantity, double totalAmount, float headerDiscount, double totalPayment, double changeAmount, double subTotal, double totalCostAmount, double totalProfit, PaymentType paymentType, Set<TransactionDetails> transactionDetails, TransactionType transactionType, TransactionStatus transactionStatus) {
         super(id, createDate, createBy, updateDate, updateBy);
         this.transactionDate = transactionDate;

@@ -1,6 +1,8 @@
 package com.ym.projects.apis.posapi.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "customer")
 @EqualsAndHashCode(callSuper = false)
+@SQLDelete(sql = "UPDATE customer SET record_status = 'DELETED' WHERE id = ?", check = ResultCheckStyle.COUNT)
 public class Customer extends BaseEntityWithName {
 
     @Column(name = "contact_name2", nullable = true)
@@ -39,8 +42,9 @@ public class Customer extends BaseEntityWithName {
     private double creditLimit;
 
     @Builder
-    public Customer(Long id, LocalDateTime createDate, String createBy, LocalDateTime updateDate, String updateBy, String name, String contactName2, String companyName, Address address, Phone phone, double creditLimit) {
-        super(id, createDate, createBy, updateDate, updateBy, name);
+
+    public Customer(Long id, LocalDateTime createDate, String createBy, LocalDateTime updateDate, String updateBy, RecordStatus recordStatus, String name, String contactName2, String companyName, Address address, Phone phone, double creditLimit) {
+        super(id, createDate, createBy, updateDate, updateBy, recordStatus, name);
         this.contactName2 = contactName2;
         this.companyName = companyName;
         this.address = address;

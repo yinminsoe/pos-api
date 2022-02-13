@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -37,7 +36,7 @@ public class WarehouseResource extends BaseResource {
                     .slash(whDto.getId()).withSelfRel();
             whDto.add(link);
         }
-        // Adding self link employee collection resource
+        // Adding self link warehouse collection resource
         Link selfLink =
                 linkTo(methodOn(WarehouseResource.class).getAllWarehouses())
                         .withSelfRel();
@@ -62,8 +61,8 @@ public class WarehouseResource extends BaseResource {
 
     @PostMapping
     public ResponseEntity<WarehouseDto> saveWarehouse(@Valid @RequestBody WarehouseDto warehouseDto) {
-         WarehouseDto warehouseDtoSavedResult= warehouseService.saveOrUpdateWarehouse(warehouseDto);
-
+        warehouseDto.setId(null);
+        WarehouseDto warehouseDtoSavedResult= warehouseService.saveOrUpdateWarehouse(warehouseDto);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(linkTo(WarehouseResource.class).slash(warehouseDtoSavedResult.getId()).toUri());
         // Self link

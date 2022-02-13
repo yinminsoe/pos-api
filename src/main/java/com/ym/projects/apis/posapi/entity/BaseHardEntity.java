@@ -1,13 +1,12 @@
 package com.ym.projects.apis.posapi.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.EnumUtils;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,8 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-@Where(clause = "record_status <> 'DELETED'")
-public class BaseEntity implements Serializable {
+public class BaseHardEntity implements Serializable {
 
     protected static final int NAME_LENGTH = 70;
     protected static final String ALL_PRICE_COLUMN_DEFINITION = "DECIMAL(12,2) DEFAULT 0.00";
@@ -46,19 +44,4 @@ public class BaseEntity implements Serializable {
     @Column(name = "update_by", length = USER_LENGTH)
     private String updateBy;
 
-    @Column(name="record_status", columnDefinition =  "VARCHAR2(15) DEFAULT 'ACTIVE'")
-    @Enumerated(EnumType.STRING)
-    private RecordStatus recordStatus;
-
-    @PrePersist
-    public void saveRecord(){
-       if(!EnumUtils.isValidEnum(RecordStatus.class, String.valueOf(recordStatus))) {
-           this.recordStatus = RecordStatus.ACTIVE;
-       }
-    }
-
-    @PreRemove
-    public void deleteRecord() {
-        this.recordStatus = RecordStatus.DELETED;
-    }
 }

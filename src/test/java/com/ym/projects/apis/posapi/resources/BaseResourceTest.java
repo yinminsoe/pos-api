@@ -1,10 +1,13 @@
 package com.ym.projects.apis.posapi.resources;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ym.projects.apis.posapi.PosApiApplication;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
@@ -20,5 +23,19 @@ public abstract class BaseResourceTest {
     protected static final LocalDateTime CURRENT_DATE =LocalDateTime.now();
     protected static final String UOM = "PCS";
 
+    @Autowired
+    protected WebApplicationContext webApplicationContext;
 
+    @Autowired
+    protected ObjectMapper objectMapper;
+
+
+    protected String asJsonString(Object obj){
+        try{
+            return objectMapper.writeValueAsString(obj);
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
+    }
 }

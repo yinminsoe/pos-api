@@ -20,8 +20,8 @@ public class BaseEntityWithName extends BaseEntity {
     @Column(name = "name", nullable = false, length = NAME_LENGTH)
     private String name;
 
-    public BaseEntityWithName(Long id, LocalDateTime createDate, String createBy, LocalDateTime updateDate, String updateBy, String name) {
-        super(id, createDate, createBy, updateDate, updateBy);
+    public BaseEntityWithName(Long id, LocalDateTime createDate, String createBy, LocalDateTime updateDate, String updateBy, RecordStatus recordStatus, String name) {
+        super(id, createDate, createBy, updateDate, updateBy, recordStatus);
         this.name = name;
     }
 

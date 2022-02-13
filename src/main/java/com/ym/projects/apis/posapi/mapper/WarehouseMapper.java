@@ -10,9 +10,9 @@ import org.mapstruct.factory.Mappers;
  public interface WarehouseMapper  {
     WarehouseMapper INSTANCE = Mappers.getMapper(WarehouseMapper.class);
 
-    @Mapping(source = "company.id" , target = "companyId")
-    WarehouseDto toDto(Warehouse warehouse);
+    @Mapping(source = "entity.company.id" , target = "companyId")
+    WarehouseDto toDto(Warehouse entity);
 
-   @Mapping(source = "companyId" , target = "company.id")
-    Warehouse toEntity(WarehouseDto warehouse);
+    @Mapping(source = "dto.companyId" , target = "company.id")
+    Warehouse toEntity(WarehouseDto dto);
 }

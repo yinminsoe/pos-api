@@ -1,6 +1,7 @@
 package com.ym.projects.apis.posapi.dto;
 
 
+import com.ym.projects.apis.posapi.entity.RecordStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,5 +31,7 @@ public class BaseDto extends RepresentationModel<BaseDto>  implements Serializab
     private String createBy;
     private LocalDateTime updateDate;
     private String updateBy;
+
+    private RecordStatus recordStatus;
 
 }
